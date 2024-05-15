@@ -10,7 +10,7 @@ nitClientes varchar(10)not null,
 nombreClientes varchar(50) not null,
 apellidoClientes varchar(50)not null,
 direccionClientes varchar(150)not null,
-telefonoClientes varchar(8)not null,
+telefonoClientes varchar(15)not null,
 CorreoClientes varchar(45)not null,
 primary key PK_clienteID(clienteID)
 );
@@ -25,9 +25,9 @@ create table TipoProducto
 create table Compras
 (
     numeroDocumento int not null ,
-    fechaDocumento varchar(10),
+    fechaDocumento date,
     descripcion varchar(60),
-    totalDocumento float(10.2),
+    totalDocumento decimal(10.2),
     primary key PK_numeroDocumento (numeroDocumento)
 );
 
@@ -46,10 +46,15 @@ create table Proveedores
 
 create table CargoEmpleado
 (
-    codigoCargoEmpleado int not null ,
-    nombreCargo varchar (45),
-    descripcionCargo varchar(45),
-    primary key PK_codigoCargoEmpleado (codigoCargoEmpleado)
+    codigoProveedor int not null ,
+    NITProveedor varchar (10),
+    nombresProveedor varchar(60),
+    apellidosProveedor varchar(60),
+    direccionProveedor varchar(150),
+    razonSocial varchar(60),
+    contactoPrincipal varchar(100),
+    paginaWeb varchar(50),
+    primary key PK_codigoProveedor (codigoProveedor)
 );
 
 insert into Clientes (clienteID, nombreClientes, apellidoClientes, nitClientes, direccionClientes,
@@ -59,7 +64,7 @@ values(1, "xd","dx","12345-6","colonia 1ro de julio","12345678","sdfgjh@hhd.com"
 
 delimiter $$
 create procedure sp_agregarClientes (in _clienteID int, in _nombreClientes varchar(10), in _apellidoClientes varchar(50),
-in _nitClientes varchar(50), in _direccionClientes varchar(150), in _telefonoClientes varchar(8), in _correoClientes varchar(45))
+in _nitClientes varchar(50), in _direccionClientes varchar(150), in _telefonoClientes varchar(15), in _correoClientes varchar(45))
 begin
 	insert into Clientes (Clientes.clienteID, Clientes.nitClientes, Clientes.nombreClientes,
     Clientes.apellidoClientes, Clientes.direccionClientes, Clientes.telefonoClientes, Clientes.correoClientes)
@@ -67,7 +72,7 @@ begin
 end$$
 delimiter ;
  
--- call sp_agregarClientes();
+
  
 delimiter $$
 	create procedure sp_listarClientes ()
@@ -77,7 +82,7 @@ delimiter $$
     end$$
 delimiter ;
  
--- call sp_listarClientes();
+
  
 delimiter $$
 	create procedure sp_buscarClientes(in _clienteID int)
@@ -89,7 +94,7 @@ delimiter ;
  
 delimiter $$
 	create procedure sp_actualizarClientes(in _clienteID int, in _nombreClientes varchar(10), in _apellidoClientes varchar(50),
-in _nitClientes varchar(50), in _direccionClientes varchar(150), in _telefonoClientes varchar(8), in _correoClientes varchar(45))
+in _nitClientes varchar(50), in _direccionClientes varchar(150), in _telefonoClientes varchar(15), in _correoClientes varchar(45))
     
     begin
 		update Clientes 
@@ -119,8 +124,8 @@ delimiter ;
 delimiter $$
 create procedure sp_agregarTipoProducto (in _codigoTipoProducto int, in _descripcion varchar(45))
 begin
-	insert into TipoProducto (TipoProducto.codigoTipoProducto, TipoProducto.descripcion)
-    values (_codigoTipoProducto, _descripcion);
+	insert into TipoProducto ( codigoTipoProducto ,TipoProducto.descripcion)
+    values (_codigoTipoProducto,_descripcion);
 end$$
 delimiter ;
 
@@ -153,17 +158,17 @@ call sp_buscarTipoProducto(1);
 -- Actualizar
 
 delimiter $$
-	create procedure sp_actualizarTipoProducto(in _codigoTipoProduto int, in descri varchar(45))
+	create procedure sp_actualizarTipoProducto(in _CodigoTipoProduto int, in _descripcion varchar(45))
     begin
 		update TipoProducto 
 		set
         TipoProducto.descripcion = _descripcion
         where 
-        TipoProducto.codigoTipoProducto = _codigoTipoProduto;
+        TipoProducto.codigoTipoProducto = _CodigoTipoProduto;
     end$$
 delimiter ;
 
--- call sp_actualizarTipoProducto(1,'Tambo agua salvavidas');
+call sp_actualizarTipoProducto(1,'Tambo agua salvavidas');
 
 -- Eliminar
 
@@ -174,7 +179,7 @@ delimiter $$
     end$$
 delimiter ;
 
--- call sp_eliminarTipoProducto(4);
+call sp_eliminarTipoProducto(4);
 
 
 -- procedimientos de compras
@@ -213,8 +218,11 @@ delimiter $$
 	end$$
 delimiter ;
 
--- call sp_buscarCompras();
-
+call sp_buscarCompras(1);
+call sp_buscarCompras(2);
+call sp_buscarCompras(3);
+call sp_buscarCompras(4);
+call sp_buscarCompras(5);
 
 -- Actualizar
 
@@ -231,7 +239,7 @@ delimiter $$
     end$$
 delimiter ;
 
--- call sp_actualizarCompras();
+call sp_actualizarCompras(1,'2023-05-21','Hoy 21 de Mayo se realizo una compra de', 90.00);
 
 -- Eliminar
 
@@ -243,51 +251,3 @@ delimiter $$
 delimiter ;
 
 call sp_eliminarCompras(1);
-
--- procedimientos de CargoEmpleado
-
-
-
-
-delimiter $$
-create procedure sp_agregarCargo (in _codigoCargoEmpleado  int, in _nombreCargo varchar(45), in _descripcionCargo varchar(50))
-begin
-	insert into CargoEmpleado (CargoEmpleado.codigoCargoEmpleado ,CargoEmpleado.nombreCargo, CargoEmpleado.descripcionCargo )
-    values (_codigoCargoEmpleado , _nombreCargo,  _descripcionCargo);
-end$$
-delimiter ;
- 
-call sp_agregarCargo(1,'Encargado Visual','Revisar el trabajo de todos');
- 
-delimiter $$
-	create procedure sp_listarCargos ()
-    begin
-		select CargoEmpleado.codigoCargoEmpleado ,CargoEmpleado.nombreCargo, CargoEmpleado.descripcionCargo from CargoEmpleado;
-    end$$
-delimiter ;
- 
- call sp_listarCargos();
- 
- 
-delimiter $$
-	create procedure sp_actualizarCargo(in _codigoCargoEmpleado  int, in _nombreCargo varchar(10), in _descripcionCargo varchar(50))
-    
-    begin
-		update CargoEmpleado 
-		set
-        CargoEmpleado.nombreCargo = _nombreCargo,
-        CargoEmpleado.descripcionCargo =_descripcionCargo
-        where 
-        CargoEmpleado.codigoCargoEmpleado = _codigoCargoEmpleado ;
-    end$$
-delimiter ;
- 
-delimiter $$
-	create procedure sp_eliminarCargo (in _codigoCargoEmpleado  int)
-    begin
-		delete from CargoEmpleado where CargoEmpleado.codigoCargoEmpleado = _codigoCargoEmpleado;
-    end$$
-delimiter ;
-
-
-
