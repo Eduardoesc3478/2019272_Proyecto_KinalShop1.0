@@ -1,0 +1,31 @@
+.menuBar{
+-fx-background-color: white;
+-fx-font-color : Black
+    
+}
+
+.button:hover { -fx-background-color: #004B34;
+    -fx-effect: dropshadow(three-pass-box, #010101 , 30,0,0,0);
+    -fx-font: White;
+    
+}
+
+.button1{
+    -fx-background-color: #FF1B02;
+    -fx-font-color : white;
+    -fx-background-radius: 50;
+    -fx-border-radius: 60;
+    -fx-border-color: white;
+    
+}
+
+.table-view.colum-header,
+.table-view.colum-filler{
+    -fx-cell-size: 20;
+    -fx-background-color: #004B34;
+}
+
+.table-row-cell:selected{
+    -fx-background-color: #FF1B02;
+}
+
