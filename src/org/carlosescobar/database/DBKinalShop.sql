@@ -53,6 +53,97 @@ create table CargoEmpleado
 );
 
 
+create table DetalleCompra
+(
+	codigoDetalleCompra int not null,
+    costoUnitario decimal(10,2),
+    cantidad int not null,
+    codigoProducto varchar(15),
+    numeroDocumento int not null,
+    primary key PK_codigoDetalleCompra (codigoDetalleCompra),
+	foreign key (codigoProducto) references Productos(codigoProducto),
+    foreign key (numeroDocumento) references Compras(numeroDocumento)
+);
+
+create table EmailProveedor
+(
+	codigoEmailProveedor int not null,
+    emailProveedor varchar(50),
+    descripcion varchar(100),
+    codigoProveedor int not null,
+    primary key PK_codigoEmailProveedor (codigoEmailProveedor),
+	foreign key (codigoProveedor) references Proveedores(codigoProveedor)
+
+);
+
+create table TelefonoProveedor
+(
+codigoTelefonoProveedor int not null,
+numeroPrincipal varchar(8),
+numeroSecundario varchar(8),
+observaciones varchar(45),
+primary key PK_codigoTelefonoProveedor (codigoTelefonoProveedor),
+foreign key (codigoProveedor) references Proveedores(codigoProveedor)
+);
+create table DetalleFactura
+(
+	codigoDetalleFactura int not null,
+    precioUnitario decimal(10,2),
+    cantidad int,
+    numeroFactura int not null,
+    codigoProducto varchar(15),
+    primary key PK_codigoDetalleFactura (codigoDetalleFactura),
+	foreign key (numeroFactura) references Factura(numeroFactura),
+    foreign key (codigoProducto) references Productos(codigoProducto)
+
+);
+
+create table Productos
+(
+	codigoProducto varchar(15),
+	descripcionProducto varchar(45),
+    precioUnitario decimal(10,2),
+    precioDocena decimal(10,2),
+    precioMayor decimal(10,2),
+    imagenProducto varchar(45),
+    existencia int not null,
+    codigoTipoProducto int not null,
+    codigoProveedor int not null,
+    primary key PK_codigoProducto (codigoProducto),
+	foreign key (codigoTipoProducto) references TipoProducto(codigoTipoProducto),
+	foreign key (codigoProveedor) references Proveedores(codigoProveedor) 
+    
+
+);
+
+create table Empleados
+(
+	codigoEmpleado int not null,
+    nombresEmpleados varchar(50),
+    apellidosEmpleados varchar(50),
+    sueldo decimal(10,2),
+    direccion varchar(150),
+    turno varchar(15),
+    codigoCargoEmpleado int,
+    primary key PK_codigoEmpleado (codigoEmpleado),
+    foreign key (codigoCargoEmpleado) references CargoEmpleado(codigoCargoEmpleado)
+);
+create table Productos
+(
+	codigoProducto varchar(15),
+	descripcionProducto varchar(45),
+    precioUnitario decimal(10,2),
+    precioDocena decimal(10,2),
+    precioMayor decimal(10,2),
+    imagenProducto varchar(45),
+    existencia int not null,
+    codigoTipoProducto int not null,
+    codigoProveedor int not null,
+    primary key PK_codigoProducto (codigoProducto),
+	foreign key (codigoTipoProducto) references TipoProducto(codigoTipoProducto),
+	foreign key (codigoProveedor) references Proveedores(codigoProveedor) 
+);
+
 
 insert into Clientes (clienteID, nombreClientes, apellidoClientes, nitClientes, direccionClientes,
 telefonoClientes, CorreoClientes)
