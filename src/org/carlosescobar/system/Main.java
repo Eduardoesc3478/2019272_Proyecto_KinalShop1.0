@@ -20,6 +20,7 @@ import org.carlosescobar.controllers.MenuClientesController;
 import org.carlosescobar.controllers.MenuProgramadorController;
 import org.carlosescobar.controllers.MenuPrincipalController;
 import org.carlosescobar.controllers.MenuTipoDeProductoController;
+import org.carlosescobar.controllers.ProveedoresController;
 
 /**
  *
@@ -118,6 +119,17 @@ public class Main extends Application {
             System.out.println(e.getMessage());
             e.printStackTrace();
         }
+    }
+    
+    public void menuProveedores(){
+        try{
+    ProveedoresController proveedoresView =(ProveedoresController)CambiarEscena("MenuProveedoresView.fxml",986,550);
+    proveedoresView.setEscenarioPrincipal(this);
+    } catch (Exception e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+        
     }
     
 

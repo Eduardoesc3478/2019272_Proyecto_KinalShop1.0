@@ -13,11 +13,11 @@ public class Proveedores {
     private int codigoProveedor;
     private String nitProveedor;
     private String nombresProveedor;    
-    private String apellidosProveedor;      
-    private String direccionProveedor;       
+    private String apellidosProveedor;             
     private String razonSocial;       
     private String contactoPrincipal;       
     private String paginaWeb;
+    private String direccionProveedor;
 
     public Proveedores() {
     }
