@@ -5,13 +5,13 @@ create database DBKinalShop;
 use DBKinalShop;
 
 create table Clientes (
-clienteID int not null,
-nitClientes varchar(10)not null,
-nombreClientes varchar(50) not null,
-apellidoClientes varchar(50)not null,
-direccionClientes varchar(150)not null,
-telefonoClientes varchar(15)not null,
-CorreoClientes varchar(45)not null,
+clienteID int,
+nitClientes varchar(10),
+nombreClientes varchar(50) ,
+apellidoClientes varchar(50),
+direccionClientes varchar(150),
+telefonoClientes varchar(15),
+CorreoClientes varchar(45),
 primary key PK_clienteID(clienteID)
 );
 
@@ -100,7 +100,7 @@ create table DetalleCompra
     costoUnitario decimal(10,2),
     cantidad int not null,
     codigoProducto varchar(15),
-    numeroDocumento int not null,
+    numeroDocumento int ,
     primary key PK_codigoDetalleCompra (codigoDetalleCompra),
 	foreign key (codigoProducto) references Productos(codigoProducto),
     foreign key (numeroDocumento) references Compras(numeroDocumento)
@@ -337,8 +337,8 @@ delimiter $$
     end$$
 delimiter ;
 
-call sp_eliminarCompras(1);
--- procedimientos de Cargo Empleado
+-- call sp_eliminarCompras();
+
 -- procedimientos de CargoEmpleado
 
 
@@ -709,20 +709,21 @@ delimiter $$
 create procedure sp_agregarDetalleCompra (in _codigoDetalleCompra int, in _costoUnitario  decimal(10.2), in _cantidad  int, in _codigoProducto varchar(15), 
 in _numeroDocumento  int)
 begin
-	insert into DetalleCompra (DetalleCompra.codigoDetalleCompra, DetalleCompra.costoUnitario, DetalleCompra.cantidad,
-    DetalleCompra.codigoProducto, DetalleCompra.numeroDocumento)
+	insert into DetalleCompra (DetalleCompra.codigoDetalleCompra, DetalleCompra.costoUnitario,
+    DetalleCompra.cantidad, DetalleCompra.codigoProducto, DetalleCompra.numeroDocumento)
     values (_codigoDetalleCompra, _costoUnitario, _cantidad, _codigoProducto, _numeroDocumento);
 end$$
 delimiter ;	
  
-call sp_agregarDetalleCompra(1,50.00,45,'123',1);
+ call sp_agregarDetalleCompra(1,50.00,45,'123',1);
+
 
 -- Listar
  
 delimiter $$
 	create procedure sp_listarDetalleCompra()
     begin
-		select DetalleCompra.codigoDetalleCompra, DetalleCompra.costoUnitario, DetalleCompra.precioUnitario,
+		select DetalleCompra.codigoDetalleCompra, DetalleCompra.costoUnitario,
     DetalleCompra.codigoProducto, DetalleCompra.numeroDocumento
     from DetalleCompra;
     end$$
@@ -892,6 +893,7 @@ delimiter ;
 delimiter $$
 	create procedure sp_actualizarTelefonoProveedor(in _codigoTelefonoProveedor int, in _numeroPrincipal  varchar(8), in _numeroSecundario  varchar(8), in _observaciones  varchar(45), 
 in _codigoProveedor  int)
+begin
 		update TelefonoProveedor
 		set
 		TelefonoProveedor.numeroPrincipal = _numeroPrincipal,
@@ -903,7 +905,7 @@ in _codigoProveedor  int)
     end$$
 delimiter ;
  
-call sp_actualizarDetalleCompra();
+-- call sp_actualizarTelefonoProveedor();
  
 -- Eliminar
  
@@ -918,11 +920,7 @@ delimiter ;
 
 -- procedimientos de DetalleFactura
 
-codigoDetalleFactura int not null,
-    precioUnitario decimal(10,2),
-    cantidad int,
-    numeroFactura int not null,
-    codigoProducto varchar(15)
+
 
 
 -- agregar
@@ -931,21 +929,21 @@ delimiter $$
 create procedure sp_agregarDetalleFactura (in _codigoDetalleFactura int , in _precioUnitario decimal(10,2), in _cantidad int, in _numeroFactura  int, 
 in _codigoProducto varchar(15))
 begin
-	insert into DetalleFactura (TelefonoProveedor.codigoDetalleFactura, TelefonoProveedor.precioUnitario, TelefonoProveedor.cantidad,
-    TelefonoProveedor.numeroFactura, TelefonoProveedor.codigoProducto)
+	insert into DetalleFactura (DetalleFactura.codigoDetalleFactura, DetalleFactura.precioUnitario, DetalleFactura.cantidad,
+    DetalleFactura.numeroFactura, DetalleFactura.codigoProducto)
     values (_codigoDetalleFactura, _precioUnitario, _cantidad, _numeroFactura, _codigoProducto);
 end$$
 delimiter ;	
  
-call sp_agregarDetalleFactura(1,'01111111','12222222','123',1);
+call sp_agregarDetalleFactura(1,12.00,1,1,'123');
 
 -- Listar
  
 delimiter $$
 	create procedure sp_listarDetalleFactura()
     begin
-		select TelefonoProveedor.codigoDetalleFactura, TelefonoProveedor.precioUnitario, TelefonoProveedor.cantidad,
-    TelefonoProveedor.numeroFactura, TelefonoProveedor.codigoProducto
+		select DetalleFactura.codigoDetalleFactura, DetalleFactura.precioUnitario, DetalleFactura.cantidad,
+    DetalleFactura.numeroFactura, DetalleFactura.codigoProducto
     from DetalleFactura;
     end$$
 delimiter ;
@@ -957,8 +955,8 @@ call sp_listarTelefonoProveedor();
 delimiter $$
 	create procedure sp_buscarDetalleFactura(in _codigoDetalleFactura int)
     begin
-	select TelefonoProveedor.codigoDetalleFactura, TelefonoProveedor.precioUnitario, TelefonoProveedor.cantidad,
-    TelefonoProveedor.numeroFactura, TelefonoProveedor.codigoProducto
+	select DetalleFactura.codigoDetalleFactura, DetalleFactura.precioUnitario, DetalleFactura.cantidad,
+    DetalleFactura.numeroFactura, DetalleFactura.codigoProducto
     from DetalleFactura where DetalleFactura.codigoTelefonoProveedor = _codigoDetalleFactura;
 	end$$
 delimiter ;
@@ -970,14 +968,15 @@ delimiter ;
 delimiter $$
 	create procedure sp_actualizarDetalleFactura(in _codigoDetalleFactura int , in _precioUnitario decimal(10,2), in _cantidad int, in _numeroFactura  int, 
 in _codigoProducto varchar(15))
-		update TelefonoProveedor
+begin
+		update DetalleFactura
 		set
-		TelefonoProveedor.precioUnitario = _precioUnitario,
-        TelefonoProveedor.cantidad = _cantidad,
-        TelefonoProveedor.numeroFactura = _numeroFactura,
-		TelefonoProveedor.codigoProducto = _codigoProducto
+		DetalleFactura.precioUnitario = _precioUnitario,
+        DetalleFactura.cantidad = _cantidad,
+        DetalleFactura.numeroFactura = _numeroFactura,
+		DetalleFactura.codigoProducto = _codigoProducto
         where 
-        TelefonoProveedor.codigoDetalleFactura = _codigoDetalleFactura;
+        DetalleFactura.codigoDetalleFactura = _codigoDetalleFactura;
     end$$
 delimiter ;
  
@@ -986,9 +985,9 @@ delimiter ;
 -- Eliminar
  
 delimiter $$
-	create procedure sp_eliminarTelefonoProveedor(in _codigoTelefonoProveedor int)
+	create procedure sp_eliminarDetalleFactura(in _codigoTelefonoProveedor int)
     begin
-		delete from TelefonoProveedor where TelefonoProveedor.codigoTelefonoProveedor = _codigoTelefonoProveedor;
+		delete from DetalleFactura where TelefonoProveedor.codigoTelefonoProveedor = _codigoTelefonoProveedor;
     end$$
 delimiter ;
 
