@@ -30,7 +30,7 @@
             <TableColumn fx:id="colSueldoE" prefWidth="58.0" text="sueldo" />
             <TableColumn fx:id="colDireccionE" prefWidth="133.0" text="direccion" />
             <TableColumn fx:id="colTurnoE" prefWidth="62.0" text="turno" />
-            <TableColumn fx:id="txtCodigoCargoE" prefWidth="139.0" text="codigoCargoEmpleado" />
+            <TableColumn fx:id="colCodigoCargoE" prefWidth="139.0" text="codigoCargoEmpleado" />
         </columns>
       </TableView>
       <GridPane layoutX="25.0" layoutY="167.0">

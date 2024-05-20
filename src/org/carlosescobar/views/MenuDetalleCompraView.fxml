@@ -17,7 +17,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="440.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.carlosescobar.controllers.DetalleCompraController">
    <children>
-      <ImageView fitHeight="470.0" fitWidth="780.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="colNumeroD" fitHeight="470.0" fitWidth="780.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/Fondo3.png" />
          </image>
@@ -97,8 +97,8 @@
           <TableColumn fx:id="colCodigoDetalleC" prefWidth="127.0" text="codigoDetalleCompra" />
           <TableColumn fx:id="colCostoU" minWidth="0.0" prefWidth="82.0" text="costoUnitario" />
             <TableColumn fx:id="colCantidadD" prefWidth="53.0" text="cantidad" />
-            <TableColumn prefWidth="96.0" text="codigoProducto" />
-            <TableColumn prefWidth="117.0" text="numeroDocumento" />
+            <TableColumn fx:id="colCodigoP" prefWidth="96.0" text="codigoProducto" />
+            <TableColumn fx:id="colNumeroD" prefWidth="117.0" text="numeroDocumento" />
         </columns>
       </TableView>
       <GridPane layoutX="240.0" layoutY="44.0" prefHeight="150.0" prefWidth="335.0">

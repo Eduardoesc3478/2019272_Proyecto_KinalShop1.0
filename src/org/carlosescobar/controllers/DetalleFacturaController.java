@@ -19,7 +19,7 @@ import org.carlosescobar.system.Main;
  */
 public class DetalleFacturaController implements Initializable{
     private Main  escenarioPrincipal;
-    
+    @FXML
     private Button btnRegresar;
     
     public void initialize(URL url, ResourceBundle rb) {
