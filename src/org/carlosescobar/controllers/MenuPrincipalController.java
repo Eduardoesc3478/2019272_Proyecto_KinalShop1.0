@@ -34,6 +34,21 @@ public class MenuPrincipalController implements Initializable {
     @FXML
     private MenuItem btnProveedores;
 
+    @FXML
+    private MenuItem btnProductos;
+    @FXML
+    private MenuItem btnDetalleCompra;
+    @FXML
+    private MenuItem btnDetalleFactura;
+    @FXML
+    private MenuItem btnEmailProveedor;
+    @FXML
+    private MenuItem btnTelefonoProveedor;
+    @FXML
+    private MenuItem btnEmpleados;
+    @FXML
+    private MenuItem btnFacturas;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -55,13 +70,26 @@ public class MenuPrincipalController implements Initializable {
             escenarioPrincipal.menuProgramador();
         } else if (event.getSource() == btnTipoDeProducto) {
             escenarioPrincipal.menuTipoProducto();
-        }else if (event.getSource() == btnCompras) {
+        } else if (event.getSource() == btnCompras) {
             escenarioPrincipal.menuCompras();
-        }else if (event.getSource() == btnCargoEmpleado) {
+        } else if (event.getSource() == btnCargoEmpleado) {
             escenarioPrincipal.menuCargoEmpleado();
         } else if (event.getSource() == btnProveedores) {
-                escenarioPrincipal.menuProveedores();
-            }
+            escenarioPrincipal.menuProveedores();
+        } else if (event.getSource() == btnProductos) {
+            escenarioPrincipal.menuProducto();
+        } else if (event.getSource() == btnDetalleCompra) {
+            escenarioPrincipal.menuDetalleCompra();
+        } else if (event.getSource() == btnDetalleFactura) {
+            escenarioPrincipal.menuDetalleFactura();
+        } else if (event.getSource() == btnEmailProveedor) {
+            escenarioPrincipal.menuEmailProveedor();
+        } else if (event.getSource() == btnTelefonoProveedor) {
+            escenarioPrincipal.menuTelefonoProveedor();
+        } else if (event.getSource() == btnEmpleados) {
+            escenarioPrincipal.menuEmpleados();
+        } else if (event.getSource() == btnFacturas) {
+            escenarioPrincipal.menuFactura();
         }
     }
-
+}

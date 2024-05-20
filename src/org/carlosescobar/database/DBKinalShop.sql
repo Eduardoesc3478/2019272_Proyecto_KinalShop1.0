@@ -87,8 +87,8 @@ create table Productos
     precioMayor decimal(10,2),
     imagenProducto varchar(45),
     existencia int not null,
-    codigoTipoProducto int not null,
-    codigoProveedor int not null,
+    codigoTipoProducto int ,
+    codigoProveedor int ,
     primary key PK_codigoProducto (codigoProducto),
 	foreign key (codigoTipoProducto) references TipoProducto(codigoTipoProducto),
 	foreign key (codigoProveedor) references Proveedores(codigoProveedor) 
@@ -111,7 +111,7 @@ create table EmailProveedor
 	codigoEmailProveedor int not null,
     emailProveedor varchar(50),
     descripcion varchar(100),
-    codigoProveedor int not null,
+    codigoProveedor int ,
     primary key PK_codigoEmailProveedor (codigoEmailProveedor),
 	foreign key (codigoProveedor) references Proveedores(codigoProveedor)
 

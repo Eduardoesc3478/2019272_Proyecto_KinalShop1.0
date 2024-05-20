@@ -7,6 +7,7 @@ package org.carlosescobar.controllers;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.Initializable;
 import org.carlosescobar.system.Main;
 
 
@@ -14,7 +15,7 @@ import org.carlosescobar.system.Main;
  *
  * @author Usuario
  */
-public class MenuProgramadorController {
+public class MenuProgramadorController implements Initializable{
     private Main  escenarioPrincipal;
     
     public void initialize(URL url, ResourceBundle rb) {
