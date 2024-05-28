@@ -229,7 +229,7 @@ public class TelefonoProveedorController implements Initializable {
         registro.setCodigoProveedor(((Proveedores) cmbCpdigoP.getSelectionModel().getSelectedItem()).getCodigoProveedor());
 
         try {
-            PreparedStatement procedimiento = Conexion.getInstance().getConexion().prepareCall("{call sp_agregarProducto(?,?,?,?,?,?,?,?)}");
+            PreparedStatement procedimiento = Conexion.getInstance().getConexion().prepareCall("{call sp_agregarTelefonoProveedor(?,?,?,?,?)}");
             procedimiento.setInt(1, registro.getCodigoTelefonoProveedor());
             procedimiento.setString(2, registro.getNumeroPrincipal());
             procedimiento.setString(3, registro.getNumeroSecundario());

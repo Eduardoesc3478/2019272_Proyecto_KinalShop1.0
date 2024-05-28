@@ -286,13 +286,14 @@ public class ProductoController implements Initializable {
         registro.setCodigoProveedor(((Proveedores) cmbCodigoProveedor.getSelectionModel().getSelectedItem()).getCodigoProveedor());
         registro.setCodigoTipoProducto(((TipoProducto) cmbCodigoTipoP.getSelectionModel().getSelectedItem()).getCodigoTipoDeProducto());
         try {
-            PreparedStatement procedimiento = Conexion.getInstance().getConexion().prepareCall("{call sp_agregarProducto(?,?,?,?,?,?,?,?)}");
+            PreparedStatement procedimiento = Conexion.getInstance().getConexion().prepareCall("{call sp_agregarProducto(?,?,?,?,?,?,?,?,?)}");
             procedimiento.setString(1, registro.getCodigoProducto());
             procedimiento.setString(2, registro.getDescripcionProducto());
             procedimiento.setDouble(3, registro.getPrecioUnitario());
             procedimiento.setDouble(4, registro.getPrecioDocena());
             procedimiento.setDouble(5, registro.getPrecioMayor());
-            procedimiento.setInt(6, registro.getExistencia());
+            procedimiento.setString(6, registro.getImagenProducto());
+            procedimiento.setInt(7, registro.getExistencia());
             procedimiento.setInt(8, registro.getCodigoProveedor());
             procedimiento.setInt(9, registro.getCodigoTipoProducto());
             procedimiento.execute();
