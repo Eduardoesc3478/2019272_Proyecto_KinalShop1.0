@@ -213,7 +213,6 @@ public class ProductoController implements Initializable {
             case NINGUNO:
                 activarControles();
 
-                
                 btnEditar.setDisable(true);
                 btnEliminar.setDisable(true);
                 imgAgregar.setImage(new Image("/org/carlosescobar/images/Guardar.png"));
@@ -226,7 +225,7 @@ public class ProductoController implements Initializable {
                 desactivarControles();
                 cargaDatos();
                 limpiarControles();
-                
+
                 btnEditar.setDisable(false);
                 btnReporte.setDisable(false);
                 imgAgregar.setImage(new Image("/org/carlosescobar/images/Agregar.png"));
@@ -303,6 +302,64 @@ public class ProductoController implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void editar() {
+        switch (tipoDeOperacion) {
+            case NINGUNO:
+                if (tblProductos.getSelectionModel().getSelectedItem() != null) {
+                    btnAgregar.setDisable(true);
+                    btnEliminar.setDisable(true);
+                    imgEditar.setImage(new Image("/org/carlosescobar/images/Actualizar.png"));
+                    imgReportes.setImage(new Image("/org/carlosescobar/images/Cancelar.png"));
+                    activarControles();
+
+                    tipoDeOperacion = operaciones.ACTUALIZAR;
+                } else {
+                    JOptionPane.showMessageDialog(null, "Seleccione el objeto");
+
+                }
+                break;
+
+            case ACTUALIZAR:
+                actualizar();
+                btnAgregar.setDisable(false);
+                btnEliminar.setDisable(false);
+                imgEditar.setImage(new Image("/org/carlosescobar/images/editar2.png"));
+                imgReportes.setImage(new Image("/org/carlosescobar/images/Reporte.png"));
+                desactivarControles();
+                limpiarControles();
+                tipoDeOperacion = operaciones.NINGUNO;
+                cargaDatos();
+        }
+    }
+
+    public void actualizar() {
+        try {
+            PreparedStatement procedimiento = Conexion.getInstance().getConexion().prepareCall("{call sp_actualizarProducto(?,?,?,?,?,?,?,?,?)}");
+            Productos registro = (Productos) tblProductos.getSelectionModel().getSelectedItem();
+            registro.setCodigoProducto(txtCodigoProd.getText());
+            registro.setDescripcionProducto(txtDescPro.getText());
+            registro.setPrecioUnitario(Double.parseDouble(txtPrecioU.getText()));
+            registro.setPrecioDocena(Double.parseDouble(txtPrecioD.getText()));
+            registro.setPrecioMayor(Double.parseDouble(txtPrecioM.getText()));
+            registro.setExistencia(Integer.parseInt(txtExistencia.getText()));
+            registro.setCodigoProveedor(((Proveedores) cmbCodigoProveedor.getSelectionModel().getSelectedItem()).getCodigoProveedor());
+            registro.setCodigoTipoProducto(((TipoProducto) cmbCodigoTipoP.getSelectionModel().getSelectedItem()).getCodigoTipoDeProducto());
+            procedimiento.setString(1, registro.getCodigoProducto());
+            procedimiento.setString(2, registro.getDescripcionProducto());
+            procedimiento.setDouble(3, registro.getPrecioUnitario());
+            procedimiento.setDouble(4, registro.getPrecioDocena());
+            procedimiento.setDouble(5, registro.getPrecioMayor());
+            procedimiento.setString(6, registro.getImagenProducto());
+            procedimiento.setInt(7, registro.getExistencia());
+            procedimiento.setInt(8, registro.getCodigoProveedor());
+            procedimiento.setInt(9, registro.getCodigoTipoProducto());
+            procedimiento.execute();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     public void desactivarControles() {

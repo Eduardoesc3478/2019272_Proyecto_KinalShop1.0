@@ -145,7 +145,7 @@ public class CargoController implements Initializable {
                 limpiarControles();
                 
                 btnEditar.setDisable(false);
-                btnReporte.setDisable(false);
+                btnEliminar.setDisable(false);
                 imgAgregar.setImage(new Image("/org/carlosescobar/images/Agregar.png"));
                 imgReporte.setImage(new Image("/org/carlosescobar/images/Eliminar.png"));
                 tipoDeOperaciones = operaciones.ACTUALIZAR;

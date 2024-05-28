@@ -7,7 +7,10 @@ package org.carlosescobar.controllers;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import org.carlosescobar.system.Main;
 
 
@@ -17,6 +20,9 @@ import org.carlosescobar.system.Main;
  */
 public class MenuProgramadorController implements Initializable{
     private Main  escenarioPrincipal;
+    
+    @FXML
+    private Button btnRegresar;
     
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -29,5 +35,10 @@ public class MenuProgramadorController implements Initializable{
     public void setEscenarioPrincipal(Main escenarioPrincipal) {
         this.escenarioPrincipal = escenarioPrincipal;
     }
-    
+@FXML
+    public void handleButtonAction(ActionEvent event) {
+        if (event.getSource() == btnRegresar) {
+            escenarioPrincipal.menuPrincipalView();
+        }
+}
 }

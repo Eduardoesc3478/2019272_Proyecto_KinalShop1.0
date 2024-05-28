@@ -124,7 +124,7 @@
                   <String fx:value="button1" />
                </styleClass>
             </Button>
-            <Button fx:id="btnEditar" mnemonicParsing="false" prefHeight="47.0" prefWidth="111.0" stylesheets="@../resource/KinalShopCSS.css" GridPane.rowIndex="2">
+            <Button fx:id="btnEditar" mnemonicParsing="false" onAction="#editar" prefHeight="47.0" prefWidth="111.0" stylesheets="@../resource/KinalShopCSS.css" GridPane.rowIndex="2">
                <graphic>
                   <ImageView fx:id="imgEditar" fitHeight="36.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
                      <image>
