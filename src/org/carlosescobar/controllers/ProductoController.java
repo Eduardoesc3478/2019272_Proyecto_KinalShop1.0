@@ -218,6 +218,7 @@ public class ProductoController implements Initializable {
                 imgAgregar.setImage(new Image("/org/carlosescobar/images/Guardar.png"));
                 imgReportes.setImage(new Image("/org/carlosescobar/images/Cancelar.png"));
                 tipoDeOperacion = operaciones.ACTUALIZAR;
+                
                 break;
 
             case ACTUALIZAR:
@@ -227,12 +228,31 @@ public class ProductoController implements Initializable {
                 limpiarControles();
 
                 btnEditar.setDisable(false);
+                btnEliminar.setDisable(false);
                 btnReporte.setDisable(false);
                 imgAgregar.setImage(new Image("/org/carlosescobar/images/Agregar.png"));
                 imgReportes.setImage(new Image("/org/carlosescobar/images/Eliminar.png"));
-                tipoDeOperacion = operaciones.ACTUALIZAR;
+               
                 tipoDeOperacion = operaciones.NINGUNO;
 
+                break;
+            
+        }
+    }
+    
+    public void reportes() {
+        switch (tipoDeOperacion) {
+            case ACTUALIZAR:
+                desactivarControles();
+                limpiarControles();
+                
+                btnAgregar.setDisable(false);
+                btnEditar.setDisable(false);
+                btnEliminar.setDisable(false);
+                imgAgregar.setImage(new Image("/org/carlosescobar/images/Agregar.png"));
+                imgEditar.setImage(new Image("/org/carlosescobar/images/editar2.png"));
+                imgReportes.setImage(new Image("/org/carlosescobar/images/Reporte.png"));
+                tipoDeOperacion = operaciones.NINGUNO;
                 break;
         }
     }

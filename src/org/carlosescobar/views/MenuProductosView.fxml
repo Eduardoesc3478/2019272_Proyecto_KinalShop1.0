@@ -27,7 +27,7 @@
             <Font name="System Bold Italic" size="31.0" />
          </font>
       </Label>
-      <TableView fx:id="tblProductos" layoutX="25.0" layoutY="236.0" prefHeight="180.0" prefWidth="859.0">
+      <TableView fx:id="tblProductos" layoutX="25.0" layoutY="236.0" onMouseClicked="#selecionarElementos" prefHeight="180.0" prefWidth="859.0">
         <columns>
             <TableColumn fx:id="colCodProd" prefWidth="102.0" text="codigoProducto" />
             <TableColumn fx:id="colDescProd" prefWidth="123.0" text="descripcionProducto" />
@@ -137,7 +137,7 @@
                   <String fx:value="button1" />
                </styleClass>
             </Button>
-            <Button fx:id="btnReportes" mnemonicParsing="false" prefHeight="48.0" prefWidth="112.0" stylesheets="@../resource/KinalShopCSS.css" GridPane.rowIndex="3">
+            <Button fx:id="btnReportes" mnemonicParsing="false" onAction="#reportes" prefHeight="48.0" prefWidth="112.0" stylesheets="@../resource/KinalShopCSS.css" GridPane.rowIndex="3">
                <graphic>
                   <ImageView fx:id="imgReportes" fitHeight="31.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                      <image>
