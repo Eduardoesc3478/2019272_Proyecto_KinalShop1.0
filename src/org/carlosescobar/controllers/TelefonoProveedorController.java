@@ -115,6 +115,13 @@ public class TelefonoProveedorController implements Initializable {
 
     }
     
+    public void selecionarElementos() {
+        txtCodigoT.setText(String.valueOf(((TelefonoProveedor) tblTelefonoProveedor.getSelectionModel().getSelectedItem()).getCodigoTelefonoProveedor()));
+        txtNumeroP.setText(((TelefonoProveedor) tblTelefonoProveedor.getSelectionModel().getSelectedItem()).getNumeroPrincipal());
+        txtNumeroS.setText(((TelefonoProveedor) tblTelefonoProveedor.getSelectionModel().getSelectedItem()).getNumeroSecundario());
+        txtObservaciones.setText(((TelefonoProveedor) tblTelefonoProveedor.getSelectionModel().getSelectedItem()).getObservaciones());
+    }
+    
     
     public ObservableList<TelefonoProveedor> getClientes() {
         ArrayList<TelefonoProveedor> lista = new ArrayList<>();
@@ -174,15 +181,33 @@ public class TelefonoProveedorController implements Initializable {
                 limpiarControles();
                 
                 btnEditar.setDisable(false);
-                btnReportes.setDisable(false);
+                btnEliminar.setDisable(false);
                 imgAgregar.setImage(new Image("/org/carlosescobar/images/Agregar.png"));
-                imgReportes.setImage(new Image("/org/carlosescobar/images/Eliminar.png"));
+                imgReportes.setImage(new Image("/org/carlosescobar/images/Reporte.png"));
                 tipoDeOperaciones = operaciones.ACTUALIZAR;
                 tipoDeOperaciones = operaciones.NINGUNO;
 
                 break;
         }
     }
+    
+    public void reportes() {
+        switch (tipoDeOperaciones) {
+            case ACTUALIZAR:
+                desactivarControles();
+                limpiarControles();
+                
+                btnAgregar.setDisable(false);
+                btnEditar.setDisable(false);
+                btnEliminar.setDisable(false);
+                imgAgregar.setImage(new Image("/org/carlosescobar/images/Agregar.png"));
+                imgEditar.setImage(new Image("/org/carlosescobar/images/editar2.png"));
+                imgReportes.setImage(new Image("/org/carlosescobar/images/Reporte.png"));
+                tipoDeOperaciones = TelefonoProveedorController.operaciones.NINGUNO;
+                break;
+        }
+    }
+
 
     public void eliminar() {
         switch (tipoDeOperaciones) {

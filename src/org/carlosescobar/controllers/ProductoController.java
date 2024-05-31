@@ -229,9 +229,9 @@ public class ProductoController implements Initializable {
 
                 btnEditar.setDisable(false);
                 btnEliminar.setDisable(false);
-                btnReporte.setDisable(false);
+                
                 imgAgregar.setImage(new Image("/org/carlosescobar/images/Agregar.png"));
-                imgReportes.setImage(new Image("/org/carlosescobar/images/Eliminar.png"));
+                imgReportes.setImage(new Image("/org/carlosescobar/images/Reporte.png"));
                
                 tipoDeOperacion = operaciones.NINGUNO;
 

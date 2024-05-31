@@ -17,12 +17,12 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="430.0" prefWidth="767.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.carlosescobar.controllers.TelefonoProveedorController">
    <children>
-      <ImageView fitHeight="451.0" fitWidth="767.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="451.0" fitWidth="767.0" onMouseClicked="#selecionarElementos" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/Fondo4.png" />
          </image>
       </ImageView>
-      <TableView fx:id="tblTelefonoProveedor" layoutX="133.0" layoutY="215.0" prefHeight="200.0" prefWidth="605.0">
+      <TableView fx:id="tblTelefonoProveedor" layoutX="133.0" layoutY="215.0" onMouseClicked="#selecionarElementos" prefHeight="200.0" prefWidth="605.0">
         <columns>
           <TableColumn fx:id="colCodigoT" prefWidth="155.0" text="codigoTelefonoProveedor" />
           <TableColumn fx:id="conNumeroP" prefWidth="104.0" text="numeroPrincipal" />
@@ -81,7 +81,7 @@
                   <String fx:value="button1" />
                </styleClass>
             </Button>
-            <Button fx:id="btnReportes" mnemonicParsing="false" prefHeight="33.0" prefWidth="100.0" stylesheets="@../resource/KinalShopCSS.css" GridPane.rowIndex="3">
+            <Button fx:id="btnReportes" mnemonicParsing="false" onAction="#reportes" prefHeight="33.0" prefWidth="100.0" stylesheets="@../resource/KinalShopCSS.css" GridPane.rowIndex="3">
                <graphic>
                   <ImageView fx:id="imgReportes" fitHeight="31.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                      <image>
