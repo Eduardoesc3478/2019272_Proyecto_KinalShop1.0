@@ -44,7 +44,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button fx:id="btnAgregar" mnemonicParsing="false" prefHeight="39.0" prefWidth="110.0" stylesheets="@../resource/KinalShopCSS.css">
+            <Button fx:id="btnAgregar" mnemonicParsing="false" onAction="#agregar" prefHeight="39.0" prefWidth="110.0" stylesheets="@../resource/KinalShopCSS.css">
                <graphic>
                   <ImageView fx:id="imgAgregar" fitHeight="34.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -57,7 +57,7 @@
                   <String fx:value="button1" />
                </styleClass>
             </Button>
-            <Button fx:id="btnEliminar" mnemonicParsing="false" prefHeight="41.0" prefWidth="114.0" stylesheets="@../resource/KinalShopCSS.css" GridPane.columnIndex="1">
+            <Button fx:id="btnEliminar" mnemonicParsing="false" onAction="#eliminar" prefHeight="41.0" prefWidth="114.0" stylesheets="@../resource/KinalShopCSS.css" GridPane.columnIndex="1">
                <graphic>
                   <ImageView fx:id="imgEliminar" fitHeight="34.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -70,7 +70,7 @@
                   <String fx:value="button1" />
                </styleClass>
             </Button>
-            <Button fx:id="btnEditar" mnemonicParsing="false" prefHeight="47.0" prefWidth="111.0" stylesheets="@../resource/KinalShopCSS.css" GridPane.columnIndex="2">
+            <Button fx:id="btnEditar" mnemonicParsing="false" onAction="#editar" prefHeight="47.0" prefWidth="111.0" stylesheets="@../resource/KinalShopCSS.css" GridPane.columnIndex="2">
                <graphic>
                   <ImageView fx:id="imgEditar" fitHeight="36.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -83,7 +83,7 @@
                   <String fx:value="button1" />
                </styleClass>
             </Button>
-            <Button fx:id="btnReportes" mnemonicParsing="false" prefHeight="48.0" prefWidth="112.0" stylesheets="@../resource/KinalShopCSS.css" GridPane.columnIndex="3">
+            <Button fx:id="btnReportes" mnemonicParsing="false" onAction="#reportes" prefHeight="48.0" prefWidth="112.0" stylesheets="@../resource/KinalShopCSS.css" GridPane.columnIndex="3">
                <graphic>
                   <ImageView fx:id="imgReportes" fitHeight="31.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                      <image>

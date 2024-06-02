@@ -524,7 +524,7 @@ in _direccion varchar(150), in _turno  varchar(15), in _codigoCargoEmpleado int)
         Empleados.apellidosEmpleados = _apellidosEmpleados,
 		Empleados.sueldo = _sueldo,
         Empleados.direccion = _direccion,
-        Empleados.turno = _contactoPrincipal,
+        Empleados.turno = _turno,
         Empleados.codigoCargoEmpleado = _codigoCargoEmpleado
         where 
 		Empleados.codigoEmpleado = _codigoEmpleado;

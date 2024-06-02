@@ -33,9 +33,10 @@ import org.carlosescobar.system.Main;
  *
  * @author Usuario
  */
-public class EmleadosController implements Initializable{
-    private Main  escenarioPrincipal;
-    
+public class EmleadosController implements Initializable {
+
+    private Main escenarioPrincipal;
+
     private enum operaciones {
         AGREGAR, ELIMINAR, EDITAR, ACTUALIZAR, CANCELAR, NINGUNO
     }
@@ -112,11 +113,12 @@ public class EmleadosController implements Initializable{
 
     @FXML
     private ComboBox cmbCodigoCargoE;
-    
-    
+
     public void initialize(URL url, ResourceBundle rb) {
         cargarDatos();
-    }    
+        cmbCodigoCargoE.setItems(getCargo());
+    }
+
     public void cargarDatos() {
         tblEmpleado.setItems(getClientes());
         colCodigoE.setCellValueFactory(new PropertyValueFactory<Empleados, Integer>("codigoEmpleado"));
@@ -128,12 +130,11 @@ public class EmleadosController implements Initializable{
         colCodigoCargoE.setCellValueFactory(new PropertyValueFactory<Empleados, Integer>("codigoCargoEmpleado"));
 
     }
-    
-    
+
     public ObservableList<Empleados> getClientes() {
         ArrayList<Empleados> lista = new ArrayList<>();
         try {
-            PreparedStatement procedimiento = Conexion.getInstance().getConexion().prepareCall("{call sp_listarTelefonoProveedor()}");
+            PreparedStatement procedimiento = Conexion.getInstance().getConexion().prepareCall("{call sp_listarEmpleados()}");
             ResultSet resultado = procedimiento.executeQuery();
             while (resultado.next()) {
                 lista.add(new Empleados(resultado.getInt("codigoEmpleado"),
@@ -149,28 +150,28 @@ public class EmleadosController implements Initializable{
         }
         return ListaEmpleados = FXCollections.observableList(lista);
     }
-    
+
     public ObservableList<CargoEmpleado> getCargo() {
         ArrayList<CargoEmpleado> Lista = new ArrayList<>();
         try {
-            PreparedStatement procedimiento = Conexion.getInstance().getConexion().prepareCall("{ call sp_listarProveedores()}");
+            PreparedStatement procedimiento = Conexion.getInstance().getConexion().prepareCall("{ call sp_listarCargos()}");
             ResultSet resultado = procedimiento.executeQuery();
             while (resultado.next()) {
                 Lista.add(new CargoEmpleado(resultado.getInt("codigoCargoEmpleado"),
                         resultado.getString("nombreCargo"),
-                resultado.getString("descripcionCargo")));
+                        resultado.getString("descripcionCargo")));
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
         return listaCargo = FXCollections.observableList(Lista);
     }
+
     public void agregar() {
         switch (tipoDeOperaciones) {
             case NINGUNO:
                 activarControles();
 
-                
                 btnEditar.setDisable(true);
                 btnEliminar.setDisable(true);
                 imgAgregar.setImage(new Image("/org/carlosescobar/images/Guardar.png"));
@@ -183,7 +184,7 @@ public class EmleadosController implements Initializable{
                 desactivarControles();
                 cargarDatos();
                 limpiarControles();
-                
+
                 btnEditar.setDisable(false);
                 btnReportes.setDisable(false);
                 imgAgregar.setImage(new Image("/org/carlosescobar/images/Agregar.png"));
@@ -231,6 +232,23 @@ public class EmleadosController implements Initializable{
         }
     }
 
+    public void reportes() {
+        switch (tipoDeOperaciones) {
+            case ACTUALIZAR:
+                desactivarControles();
+                limpiarControles();
+
+                btnAgregar.setDisable(false);
+                btnEditar.setDisable(false);
+                btnEliminar.setDisable(false);
+                imgAgregar.setImage(new Image("/org/carlosescobar/images/Agregar.png"));
+                imgEditar.setImage(new Image("/org/carlosescobar/images/editar2.png"));
+                imgReportes.setImage(new Image("/org/carlosescobar/images/Reporte.png"));
+                tipoDeOperaciones = operaciones.NINGUNO;
+                break;
+        }
+    }
+
     public void guardar() {
         Empleados registro = new Empleados();
         registro.setCodigoEmpleado(Integer.parseInt(txtCodigoE.getText()));
@@ -240,16 +258,17 @@ public class EmleadosController implements Initializable{
         registro.setDireccion((txtDireccionE.getText()));
         registro.setTurno((txtTurnoE.getText()));
 
-        
-        registro.setCodigoCargoEmpleado(((Empleados) cmbCodigoCargoE.getSelectionModel().getSelectedItem()).getCodigoCargoEmpleado());
+        registro.setCodigoCargoEmpleado(((CargoEmpleado) cmbCodigoCargoE.getSelectionModel().getSelectedItem()).getCodigoCargoEmpleado());
 
         try {
-            PreparedStatement procedimiento = Conexion.getInstance().getConexion().prepareCall("{call sp_agregarProducto(?,?,?,?,?,?,?,?)}");
+            PreparedStatement procedimiento = Conexion.getInstance().getConexion().prepareCall("{call sp_agregarEmpleado(?,?,?,?,?,?,?)}");
             procedimiento.setInt(1, registro.getCodigoEmpleado());
             procedimiento.setString(2, registro.getNombresEmpleados());
             procedimiento.setString(3, registro.getApellidosEmpleados());
             procedimiento.setDouble(4, registro.getSueldo());
             procedimiento.setString(5, registro.getDireccion());
+            procedimiento.setString(6, registro.getTurno());
+            procedimiento.setInt(7, registro.getCodigoCargoEmpleado());
 
             procedimiento.execute();
 
@@ -258,6 +277,62 @@ public class EmleadosController implements Initializable{
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void editar() {
+        switch (tipoDeOperaciones) {
+            case NINGUNO:
+                if (tblEmpleado.getSelectionModel().getSelectedItem() != null) {
+                    btnAgregar.setDisable(true);
+                    btnEliminar.setDisable(true);
+                    imgEditar.setImage(new Image("/org/carlosescobar/images/Actualizar.png"));
+                    imgReportes.setImage(new Image("/org/carlosescobar/images/Cancelar.png"));
+                    activarControles();
+
+                    tipoDeOperaciones = operaciones.ACTUALIZAR;
+                } else {
+                    JOptionPane.showMessageDialog(null, "Seleccione el objeto");
+
+                }
+                break;
+
+            case ACTUALIZAR:
+                actualizar();
+                btnAgregar.setDisable(false);
+                btnEliminar.setDisable(false);
+                imgEditar.setImage(new Image("/org/carlosescobar/images/editar2.png"));
+                imgReportes.setImage(new Image("/org/carlosescobar/images/Reporte.png"));
+                desactivarControles();
+                limpiarControles();
+                tipoDeOperaciones = operaciones.NINGUNO;
+                cargarDatos();
+        }
+    }
+
+    public void actualizar() {
+        try {
+            PreparedStatement procedimiento = Conexion.getInstance().getConexion().prepareCall("{call sp_actualizarEmpleado(?,?,?,?,?,?,?)}");
+            Empleados registro = (Empleados)tblEmpleado.getSelectionModel().getSelectedItem();
+            registro.setCodigoEmpleado(Integer.parseInt(txtCodigoE.getText()));
+            registro.setNombresEmpleados(txtNombreE.getText());
+            registro.setApellidosEmpleados((txtApellidoE.getText()));
+            registro.setSueldo(Double.parseDouble(txtSueldoE.getText()));
+            registro.setDireccion((txtDireccionE.getText()));
+            registro.setTurno((txtTurnoE.getText()));
+
+            registro.setCodigoCargoEmpleado(((CargoEmpleado) cmbCodigoCargoE.getSelectionModel().getSelectedItem()).getCodigoCargoEmpleado());
+            procedimiento.setInt(1, registro.getCodigoEmpleado());
+            procedimiento.setString(2, registro.getNombresEmpleados());
+            procedimiento.setString(3, registro.getApellidosEmpleados());
+            procedimiento.setDouble(4, registro.getSueldo());
+            procedimiento.setString(5, registro.getDireccion());
+            procedimiento.setString(6, registro.getTurno());
+            procedimiento.setInt(7, registro.getCodigoCargoEmpleado());
+            procedimiento.execute();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     public void desactivarControles() {
@@ -301,6 +376,7 @@ public class EmleadosController implements Initializable{
     public void setEscenarioPrincipal(Main escenarioPrincipal) {
         this.escenarioPrincipal = escenarioPrincipal;
     }
+
     @FXML
     public void handleButtonAction(ActionEvent event) {
         if (event.getSource() == btnRegresar) {
