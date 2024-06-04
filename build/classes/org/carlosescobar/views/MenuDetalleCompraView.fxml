@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="440.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.carlosescobar.controllers.DetalleCompraController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="440.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.carlosescobar.controllers.DetalleFacturaController">
    <children>
       <ImageView fx:id="colNumeroD" fitHeight="470.0" fitWidth="780.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -98,7 +98,8 @@
           <TableColumn fx:id="colCostoU" minWidth="0.0" prefWidth="82.0" text="costoUnitario" />
             <TableColumn fx:id="colCantidadD" prefWidth="53.0" text="cantidad" />
             <TableColumn fx:id="colCodigoP" prefWidth="96.0" text="codigoProducto" />
-            <TableColumn fx:id="colNumeroD" prefWidth="117.0" text="numeroDocumento" />
+            <TableColumn fx:id="colNumeroD" prefWidth="96.0" text="NumeroDocumento" />
+          
         </columns>
       </TableView>
       <GridPane layoutX="240.0" layoutY="44.0" prefHeight="150.0" prefWidth="335.0">

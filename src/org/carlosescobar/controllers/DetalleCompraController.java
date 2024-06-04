@@ -82,38 +82,10 @@ public class DetalleCompraController implements Initializable {
     private Button btnRegresar;
 
     public void initialize(URL url, ResourceBundle rb) {
-        cargaDatos();
+       
     }
 
-    public void cargaDatos() {
-        tblDetalleCompra.setItems(getDetalleCompra());
-        colCodigoDetalleC.setCellValueFactory(new PropertyValueFactory<DetalleCompra, Integer>("codigoDetalleCompra"));
-        colCostoU.setCellValueFactory(new PropertyValueFactory<DetalleCompra, Double>("costoUnitario"));
-        colCantidadD.setCellValueFactory(new PropertyValueFactory<DetalleCompra, Integer>("cantidad"));
-        colCodigoP.setCellValueFactory(new PropertyValueFactory<DetalleCompra, String>("codigoProducto"));
-        colNumeroD.setCellValueFactory(new PropertyValueFactory<DetalleCompra, Integer>("numeroDocumento"));
 
-
-    }
-
-    
-   public ObservableList<DetalleCompra> getDetalleCompra() {
-        ArrayList<DetalleCompra> lista = new ArrayList<>();
-        try {
-            PreparedStatement procedimiento = Conexion.getInstance().getConexion().prepareCall("{call sp_listarDetalleCompra()}");
-            ResultSet resultado = procedimiento.executeQuery();
-            while (resultado.next()) {
-                lista.add(new DetalleCompra(resultado.getInt("codigoDetalleCompra"),
-                        resultado.getDouble("costoUnitario"),
-                        resultado.getInt("cantidad"),
-                        resultado.getString("codigoProducto"),
-                        resultado.getInt("numeroDocumento")));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return listaDetalleCompra = FXCollections.observableList(lista);
-    }
    
     public Main getEscenarioPrincipal() {
         return escenarioPrincipal;

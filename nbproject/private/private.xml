@@ -3,9 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Usuario/Desktop/Repositorio_2019272/2019272_Proyecto_KinalShop1.0/src/org/carlosescobar/db/Conexion.java</file>
+            <file>file:/C:/Users/Usuario/Desktop/Repositorio_2019272/2019272_Proyecto_KinalShop1.0/src/org/carlosescobar/controllers/EmailProveedorController.java</file>
+            <file>file:/C:/Users/Usuario/Desktop/Repositorio_2019272/2019272_Proyecto_KinalShop1.0/src/org/carlosescobar/bean/EmailProveedor.java</file>
+            <file>file:/C:/Users/Usuario/Desktop/Repositorio_2019272/2019272_Proyecto_KinalShop1.0/src/org/carlosescobar/database/DBKinalShop.sql</file>
             <file>file:/C:/Users/Usuario/Desktop/Repositorio_2019272/2019272_Proyecto_KinalShop1.0/src/org/carlosescobar/controllers/EmleadosController.java</file>
-            <file>file:/C:/Users/Usuario/Desktop/Repositorio_2019272/2019272_Proyecto_KinalShop1.0/src/org/carlosescobar/controllers/TelefonoProveedorController.java</file>
         </group>
     </open-files>
 </project-private>

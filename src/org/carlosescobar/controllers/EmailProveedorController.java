@@ -233,7 +233,7 @@ public class EmailProveedorController implements Initializable {
                     if (respuesta == JOptionPane.YES_NO_OPTION) {
                         try {
                             PreparedStatement procedimiento = Conexion.getInstance().getConexion().prepareCall("{call sp_eliminarEmailProveedor(?)}");
-                            procedimiento.setInt(1, ((EmailProveedor) tblEmailP.getSelectionModel().getSelectedItem()).getCodigoProveedor());
+                            procedimiento.setInt(1, ((EmailProveedor) tblEmailP.getSelectionModel().getSelectedItem()).getCodigoEmailProveedor());
                             procedimiento.execute();
                             ListaEmail.remove(tblEmailP.getSelectionModel().getSelectedItem());
                             limpiarControles();
