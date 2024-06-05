@@ -72,16 +72,16 @@
 				<textFieldExpression><![CDATA[$F{apellidoClientes}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="323" y="0" width="100" height="20" uuid="90652e03-8dcf-43d8-bb9b-abd6ad3eec69"/>
-				<textFieldExpression><![CDATA[$F{direccionClientes}]]></textFieldExpression>
-			</textField>
-			<textField>
 				<reportElement x="437" y="0" width="100" height="20" uuid="0ebc7ef4-e8ba-499c-b0e1-c7e08f0e7957"/>
 				<textFieldExpression><![CDATA[$F{telefonoClientes}]]></textFieldExpression>
 			</textField>
 			<line>
 				<reportElement x="60" y="0" width="464" height="1" uuid="59e1129f-3c52-4f23-8207-dac441074e5e"/>
 			</line>
+			<textField>
+				<reportElement x="323" y="1" width="100" height="20" uuid="36ba578c-017a-4e9b-b518-73455e01c258"/>
+				<textFieldExpression><![CDATA[$F{direccionClientes}]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
 	<columnFooter>

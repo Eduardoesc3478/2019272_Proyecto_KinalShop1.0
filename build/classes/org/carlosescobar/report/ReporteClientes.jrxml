@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReporteClientes" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="85f9c07b-c6a8-4503-aebc-b48aca05c656">
-	<property name="ireport.zoom" value="2.3579476910000117"/>
-	<property name="ireport.x" value="605"/>
-	<property name="ireport.y" value="348"/>
+	<property name="ireport.zoom" value="1.0000000000000044"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
 	<queryString>
 		<![CDATA[call sp_listarClientes]]>
 	</queryString>
@@ -59,6 +59,10 @@
 				<reportElement x="437" y="0" width="100" height="20" uuid="446b0664-6524-464c-ac61-164af08ef342"/>
 				<text><![CDATA[telefonoClientes]]></text>
 			</staticText>
+			<staticText>
+				<reportElement x="356" y="1" width="100" height="20" uuid="3265c0de-a7b8-44d1-8758-34699598ee50"/>
+				<text><![CDATA[direccionClientes]]></text>
+			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
@@ -72,16 +76,16 @@
 				<textFieldExpression><![CDATA[$F{apellidoClientes}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="323" y="0" width="100" height="20" uuid="90652e03-8dcf-43d8-bb9b-abd6ad3eec69"/>
-				<textFieldExpression><![CDATA[$F{direccionClientes}]]></textFieldExpression>
-			</textField>
-			<textField>
 				<reportElement x="437" y="0" width="100" height="20" uuid="0ebc7ef4-e8ba-499c-b0e1-c7e08f0e7957"/>
 				<textFieldExpression><![CDATA[$F{telefonoClientes}]]></textFieldExpression>
 			</textField>
 			<line>
 				<reportElement x="60" y="0" width="464" height="1" uuid="59e1129f-3c52-4f23-8207-dac441074e5e"/>
 			</line>
+			<textField>
+				<reportElement x="323" y="1" width="100" height="20" uuid="36ba578c-017a-4e9b-b518-73455e01c258"/>
+				<textFieldExpression><![CDATA[$F{direccionClientes}]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
 	<columnFooter>

@@ -2,6 +2,8 @@ set global time_zone = '-6:00';
 drop database if exists DBKinalShop;
 create database DBKinalShop;
 
+
+ALTER USER '2019067_IN5BM'@'localhost' IDENTIFIED WITH mysql_native_password BY 'admi';
 use DBKinalShop;
 
 create table Clientes (
@@ -152,11 +154,11 @@ values(1, "Julio","Frame","12345-6","colonia 1ro de julio","12345678","sdfgjh@hh
 
 
 delimiter $$
-create procedure sp_agregarClientes (in _clienteID int, in _nombreClientes varchar(10), in _apellidoClientes varchar(50),
-in _nitClientes varchar(50), in _direccionClientes varchar(150), in _telefonoClientes varchar(15), in _correoClientes varchar(45))
+create procedure sp_agregarClientes (in _clienteID int, in _nombreClientes varchar(50), in _apellidoClientes varchar(50),
+in _nitClientes varchar(10), in _direccionClientes varchar(150), in _telefonoClientes varchar(15), in _correoClientes varchar(45))
 begin
-	insert into Clientes (Clientes.clienteID, Clientes.nitClientes, Clientes.nombreClientes,
-    Clientes.apellidoClientes, Clientes.direccionClientes, Clientes.telefonoClientes, Clientes.correoClientes)
+	insert into Clientes (Clientes.clienteID,  Clientes.nombreClientes, Clientes.apellidoClientes, Clientes.nitClientes, 
+    Clientes.direccionClientes, Clientes.telefonoClientes, Clientes.correoClientes)
     values (_clienteID, _nombreClientes, _apellidoClientes, nitClientes, _direccionClientes, _telefonoClientes, _correoClientes);
 end$$
 delimiter ;
@@ -166,7 +168,7 @@ delimiter ;
 delimiter $$
 	create procedure sp_listarClientes ()
     begin
-		select Clientes.clienteID, Clientes.nitClientes, Clientes.nombreClientes,
+		select Clientes.clienteID,  Clientes.nombreClientes,
 		Clientes.apellidoClientes, Clientes.direccionClientes, Clientes.telefonoClientes, Clientes.correoClientes  from Clientes;
     end$$
 delimiter ;

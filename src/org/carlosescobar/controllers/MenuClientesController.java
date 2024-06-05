@@ -106,9 +106,9 @@ public class MenuClientesController implements Initializable {
     public void cargarDatos() {
         tblClientes.setItems(getClientes());
         colCodigoC.setCellValueFactory(new PropertyValueFactory<Clientes, Integer>("clienteID"));
-        colNitC.setCellValueFactory(new PropertyValueFactory<Clientes, String>("nitClientes"));
         colNombreC.setCellValueFactory(new PropertyValueFactory<Clientes, String>("nombreClientes"));
         colApellidoC.setCellValueFactory(new PropertyValueFactory<Clientes, String>("apellidoClientes"));
+        colNitC.setCellValueFactory(new PropertyValueFactory<Clientes, String>("nitClientes"));
         colDireccionC.setCellValueFactory(new PropertyValueFactory<Clientes, String>("direccionClientes"));
         colTelefonoC.setCellValueFactory(new PropertyValueFactory<Clientes, String>("telefonoClientes"));
         colCorreoC.setCellValueFactory(new PropertyValueFactory<Clientes, String>("correoClientes"));
@@ -122,7 +122,7 @@ public class MenuClientesController implements Initializable {
         txtDireccionC.setText((((Clientes) tblClientes.getSelectionModel().getSelectedItem()).getNombreClientes()));
         txtTelefonoC.setText((((Clientes) tblClientes.getSelectionModel().getSelectedItem()).getNombreClientes()));
         txtCorreoC.setText((((Clientes) tblClientes.getSelectionModel().getSelectedItem()).getNombreClientes()));
-        txtNombreC.setText((((Clientes) tblClientes.getSelectionModel().getSelectedItem()).getNombreClientes()));
+        
     }
 
     public ObservableList<Clientes> getClientes() {
@@ -132,9 +132,9 @@ public class MenuClientesController implements Initializable {
             ResultSet resultado = procedimiento.executeQuery();
             while (resultado.next()) {
                 lista.add(new Clientes(resultado.getInt("clienteID"),
-                        resultado.getString("nitClientes"),
                         resultado.getString("nombreClientes"),
                         resultado.getString("apellidoClientes"),
+                        resultado.getString("nitClientes"),
                         resultado.getString("direccionClientes"),
                         resultado.getString("telefonoClientes"),
                         resultado.getString("correoClientes")));
@@ -261,9 +261,9 @@ public class MenuClientesController implements Initializable {
             registro.setDireccionClientes(txtDireccionC.getText());
             registro.setCorreoClientes(txtCorreoC.getText());
             procedimiento.setInt(1, registro.getClienteID());
-            procedimiento.setString(2, registro.getNitClientes());
-            procedimiento.setString(3, registro.getNombreClientes());
-            procedimiento.setString(4, registro.getApellidoClientes());
+            procedimiento.setString(2, registro.getNombreClientes());
+            procedimiento.setString(3, registro.getApellidoClientes());
+            procedimiento.setString(4, registro.getNitClientes());
             procedimiento.setString(5, registro.getDireccionClientes());
             procedimiento.setString(6, registro.getTelefonoClientes());
             procedimiento.setString(7, registro.getCorreoClientes());
@@ -314,8 +314,8 @@ public class MenuClientesController implements Initializable {
             procedimiento.setString(2, registro.getNombreClientes());
             procedimiento.setString(3, registro.getApellidoClientes());
             procedimiento.setString(4, registro.getNitClientes());
-            procedimiento.setString(5, registro.getTelefonoClientes());
-            procedimiento.setString(6, registro.getDireccionClientes());
+            procedimiento.setString(5, registro.getDireccionClientes());
+            procedimiento.setString(6, registro.getTelefonoClientes());
             procedimiento.setString(7, registro.getCorreoClientes());
             procedimiento.execute();
             ListaClientes.add(registro);
