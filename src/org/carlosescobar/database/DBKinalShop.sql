@@ -148,7 +148,7 @@ create table DetalleFactura
 
 insert into Clientes (clienteID, nombreClientes, apellidoClientes, nitClientes, direccionClientes,
 telefonoClientes, CorreoClientes)
-values(1, "xd","dx","12345-6","colonia 1ro de julio","12345678","sdfgjh@hhd.com");
+values(1, "Julio","Frame","12345-6","colonia 1ro de julio","12345678","sdfgjh@hhd.com");
 
 
 delimiter $$
@@ -205,7 +205,7 @@ delimiter $$
     end$$
 delimiter ;
 
-
+-- call sp_actualizarClientes(1, "Julio","Frame","12345-6","colonia 1ro de julio","12345678","sdfgjh@hhd.com");
 
 
 -- Procedimientos de TipoProducto
@@ -992,3 +992,4 @@ delimiter $$
 delimiter ;
 
 
+ALTER USER 'Proyectos_IN5BM'@'localhost' IDENTIFIED WITH mysql_native_password BY 'abc123**';
