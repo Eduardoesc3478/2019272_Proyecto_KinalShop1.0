@@ -70,7 +70,7 @@
                   <String fx:value="button1" />
                </styleClass>
             </Button>
-            <Button fx:id="btnReportes" mnemonicParsing="false" onAction="#reporte" prefHeight="52.0" prefWidth="96.0" stylesheets="@../resource/KinalShopCSS.css" text="Reportes" GridPane.columnIndex="3" GridPane.rowIndex="1">
+            <Button fx:id="btnReportes" mnemonicParsing="false" onAction="#reportes" prefHeight="52.0" prefWidth="96.0" stylesheets="@../resource/KinalShopCSS.css" text="Reportes" GridPane.columnIndex="3" GridPane.rowIndex="1">
                <styleClass>
                   <String fx:value="button" />
                   <String fx:value="button1" />

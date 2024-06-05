@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReporteClientes" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="85f9c07b-c6a8-4503-aebc-b48aca05c656">
+	<property name="ireport.zoom" value="2.3579476910000117"/>
+	<property name="ireport.x" value="605"/>
+	<property name="ireport.y" value="348"/>
+	<queryString>
+		<![CDATA[call sp_listarClientes]]>
+	</queryString>
+	<field name="clienteID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nitClientes" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nombreClientes" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="apellidoClientes" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="direccionClientes" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="telefonoClientes" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="correoClientes" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band height="802" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="555" height="802" uuid="95537bf6-5dec-48f5-a9e9-6c7815434cd2"/>
+				<imageExpression><![CDATA["C:\\Users\\Informatica\\Desktop\\Repositorio 2019272\\2019272_Proyecto_KinalShop1.0\\src\\org\\carlosescobar\\images\\FondoReportes.png"]]></imageExpression>
+			</image>
+		</band>
+	</background>
+	<title>
+		<band height="186" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="21" splitType="Stretch">
+			<staticText>
+				<reportElement x="80" y="0" width="100" height="20" uuid="239e84de-9d47-4b0d-b759-3f3366f9562f"/>
+				<text><![CDATA[nombreClientes]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="202" y="0" width="100" height="20" uuid="130634b8-e11b-43a0-921f-2588ba78676e"/>
+				<text><![CDATA[apellidoClientes]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="323" y="0" width="100" height="21" uuid="2970de31-2a0a-43b5-a8a8-029402451e0b"/>
+				<text><![CDATA[direccionClientes]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="437" y="0" width="100" height="20" uuid="446b0664-6524-464c-ac61-164af08ef342"/>
+				<text><![CDATA[telefonoClientes]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="38" splitType="Stretch">
+			<textField>
+				<reportElement x="80" y="0" width="100" height="20" uuid="fa5a58e9-126a-4af9-a66e-ddab238c6aad"/>
+				<textFieldExpression><![CDATA[$F{nombreClientes}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="202" y="0" width="100" height="20" uuid="7fe57bf7-e2a1-405b-a08e-fcc05367f174"/>
+				<textFieldExpression><![CDATA[$F{apellidoClientes}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="323" y="0" width="100" height="20" uuid="90652e03-8dcf-43d8-bb9b-abd6ad3eec69"/>
+				<textFieldExpression><![CDATA[$F{direccionClientes}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="437" y="0" width="100" height="20" uuid="0ebc7ef4-e8ba-499c-b0e1-c7e08f0e7957"/>
+				<textFieldExpression><![CDATA[$F{telefonoClientes}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="60" y="0" width="464" height="1" uuid="59e1129f-3c52-4f23-8207-dac441074e5e"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

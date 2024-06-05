@@ -9,6 +9,8 @@ import java.net.URL;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -25,6 +27,7 @@ import javafx.scene.image.ImageView;
 import javax.swing.JOptionPane;
 import org.carlosescobar.bean.Clientes;
 import org.carlosescobar.db.Conexion;
+import org.carlosescobar.report.GenerarReportes;
 import org.carlosescobar.system.Main;
 
 
@@ -164,7 +167,7 @@ public class MenuClientesController implements Initializable {
                 btnAgregar.setText("Agregar");
                 btnEliminar.setText("Eliminar");
                 btnEditar.setDisable(false);
-                btnReportes.setDisable(false);
+                btnEliminar.setDisable(false);
                 imgAgregar.setImage(new Image("/org/carlosescobar/images/Agregar.png"));
                 imgEliminar.setImage(new Image("/org/carlosescobar/images/Eliminar.png"));
                 tipoDeOperaciones = operaciones.ACTUALIZAR;
@@ -269,7 +272,32 @@ public class MenuClientesController implements Initializable {
             e.printStackTrace();
         }
     }
+    public void reportes() {
+        switch (tipoDeOperaciones) {
+            case NINGUNO:
+                imprimirReporte();
+                break;
+            case ACTUALIZAR:
+                desactivarControles();
+                limpiarControles();
 
+                btnAgregar.setDisable(false);
+                btnEditar.setDisable(false);
+                btnEliminar.setDisable(false);
+                imgAgregar.setImage(new Image("/org/carlosescobar/images/Agregar.png"));
+                imgEditar.setImage(new Image("/org/carlosescobar/images/editar2.png"));
+                imgReportes.setImage(new Image("/org/carlosescobar/images/Reporte.png"));
+                tipoDeOperaciones = operaciones.NINGUNO;
+                break;
+        }
+    }
+
+    
+    public void imprimirReporte(){
+        Map parametros = new HashMap();
+        parametros.put("clienteID",null);
+        GenerarReportes.mostrarReportes("ReporteClientes.jasper","Reporte de clientes", parametros);
+    }
     public void guardar() {
         Clientes registro = new Clientes();
         registro.setClienteID(Integer.parseInt(txtCodigoC.getText()));
