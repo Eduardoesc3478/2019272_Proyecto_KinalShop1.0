@@ -3,7 +3,7 @@ drop database if exists DBKinalShop;
 create database DBKinalShop;
 
 
-ALTER USER '2019067_IN5BM'@'localhost' IDENTIFIED WITH mysql_native_password BY 'admi';
+
 use DBKinalShop;
 
 create table Clientes (
@@ -39,10 +39,10 @@ create table Proveedores
     nitProveedor varchar (10),
     nombresProveedor varchar(60),
     apellidosProveedor varchar(60),
-    direccionProveedor varchar(150),
     razonSocial varchar(60),
     contactoPrincipal varchar(100),
     paginaWeb varchar(50),
+    direccionProveedor varchar(150),
     primary key PK_codigoProveedor (codigoProveedor)
 );
 
@@ -173,7 +173,7 @@ delimiter $$
     end$$
 delimiter ;
  
-
+call  sp_listarClientes ();
  
 delimiter $$
 	create procedure sp_buscarClientes(in _clienteID int)
@@ -397,14 +397,13 @@ delimiter $$
 create procedure sp_agregarProveedores (in _codigoProveedor int, in _nitProveedor  varchar(10), in _nombresProveedor  varchar(60), in _apellidosProveedor  varchar(60), 
 in _direccionProveedor  varchar(150), in _razonSocial  varchar(60), in _contactoPrincipal  varchar(100), in _paginaWeb  varchar(50))
 begin
-	insert into Proveedores (Proveedores.codigoProveedor, Proveedores.nitProveedor, Proveedores.nombresProveedor,
-    Proveedores.apellidosProveedor, Proveedores.direccionProveedor, Proveedores.razonSocial, Proveedores.contactoPrincipal,
-    Proveedores.paginaWeb)
+	insert into Proveedores (Proveedores.codigoProveedor, Proveedores.nitProveedor, Proveedores.nombresProveedor,Proveedores.apellidosProveedor, 
+	 Proveedores.razonSocial, Proveedores.contactoPrincipal, Proveedores.paginaWeb, Proveedores.direccionProveedor)
     values (_codigoProveedor, _nitProveedor, _nombresProveedor, _apellidosProveedor, _direccionProveedor, _razonSocial, _contactoPrincipal, _paginaWeb);
 end$$
 delimiter ;	
  
-call sp_agregarProveedores(1,'12347894-9','Carlos José','Méndez Oliva','Almacén 18 carretera al Salvador', 'risitos', 'risitos12@gmail.com', 'www.risitos.com');
+call sp_agregarProveedores(1,'12347894-9','Carlos José','Méndez Oliva', 'risitos', 'risitos12@gmail.com', 'www.risitos.com','Almacén 18 carretera al Salvador');
 
 
 -- Listar
@@ -413,8 +412,8 @@ delimiter $$
 	create procedure sp_listarProveedores()
     begin
 		select Proveedores.codigoProveedor, Proveedores.nitProveedor, Proveedores.nombresProveedor,Proveedores.apellidosProveedor, 
-	Proveedores.direccionProveedor, Proveedores.razonSocial, Proveedores.contactoPrincipal, Proveedores.paginaWeb 
-    from Proveedores;
+	 Proveedores.razonSocial, Proveedores.contactoPrincipal, Proveedores.paginaWeb , Proveedores.direccionProveedor 
+    from Proveedores ;
     end$$
 delimiter ;
  
@@ -651,7 +650,30 @@ delimiter $$
 delimiter ;
  
 call sp_listarProductos();
- 
+
+
+
+delimiter $$
+	create procedure sp_listarProducto()
+	begin
+    select 
+        p.codigoProducto,
+        tp.descripcion as descripcionTipoProducto,
+        p.descripcionProducto,
+        p.precioUnitario,
+        p.existencia,
+        pr.codigoProveedor,
+        tp.codigoTipoProducto
+    from
+        Productos p
+    join 
+        Proveedores pr on p.codigoProveedor = pr.codigoProveedor
+	join
+		TipoProducto tp on p.codigoTipoProducto = tp.codigoTipoProducto;
+end$$
+delimiter ;
+
+call sp_listarProducto();		
 -- Buscar
  
 delimiter $$

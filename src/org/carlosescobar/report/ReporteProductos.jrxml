@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReporteProductos" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="08d1ea59-6529-4497-afda-1d958fb42d00">
-	<property name="ireport.zoom" value="1.0000000000000009"/>
+	<property name="ireport.zoom" value="0.5644739300537778"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<queryString>
-		<![CDATA[
-call sp_listarProducto]]>
+		<![CDATA[call sp_listarProducto]]>
 	</queryString>
 	<field name="codigoProducto" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
@@ -29,8 +28,8 @@ call sp_listarProducto]]>
 	<background>
 		<band height="802" splitType="Stretch">
 			<image>
-				<reportElement x="0" y="0" width="555" height="802" uuid="db3bcb95-64d2-4fdb-9473-674ba21f1cdb"/>
-				<imageExpression><![CDATA["C:\\Users\\Usuario\\Desktop\\Repositorio_2019272\\2019272_Proyecto_KinalShop1.0\\src\\org\\carlosescobar\\images\\FondoReportes.png"]]></imageExpression>
+				<reportElement x="0" y="0" width="555" height="802" uuid="91d9cc51-3aba-41ec-9167-87cf9e9c0a3d"/>
+				<imageExpression><![CDATA["C:\\Users\\Informatica\\Desktop\\Repositorio 2019272\\2019272_Proyecto_KinalShop1.0\\src\\org\\carlosescobar\\images\\FondoReportes.png"]]></imageExpression>
 			</image>
 		</band>
 	</background>

@@ -9,6 +9,8 @@ import java.net.URL;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -28,6 +30,7 @@ import org.carlosescobar.bean.Clientes;
 import org.carlosescobar.bean.Empleados;
 import org.carlosescobar.bean.Factura;
 import org.carlosescobar.db.Conexion;
+import org.carlosescobar.report.GenerarReportes;
 import org.carlosescobar.system.Main;
 
 /**
@@ -336,8 +339,11 @@ public ObservableList<Clientes> getClientes() {
         }
 
     }
-    public void reportes() {
+     public void reportes() {
         switch (tipoDeOperaciones) {
+            case NINGUNO:
+                imprimirReporte();
+                break;
             case ACTUALIZAR:
                 desactivarControles();
                 limpiarControles();
@@ -351,6 +357,14 @@ public ObservableList<Clientes> getClientes() {
                 tipoDeOperaciones = operaciones.NINGUNO;
                 break;
         }
+    }
+
+    
+    public void imprimirReporte(){
+        Map parametros = new HashMap();
+        int numFac = Integer.valueOf(((Factura)tblFactura.getSelectionModel().getSelectedItem()).getNumeroFactura());
+        parametros.put(numFac,numFac);
+        GenerarReportes.mostrarReportes("ReporteFactura.jasper","Reporte de clientes", parametros);
     }
     public void desactivarControles() {
         txtNumeroF.setEditable(false);
