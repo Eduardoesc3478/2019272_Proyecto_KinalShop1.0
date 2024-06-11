@@ -324,23 +324,6 @@ public class MenuClientesController implements Initializable {
         }
     }
 
-    public void reporte() {
-
-        switch (tipoDeOperaciones) {
-            case ACTUALIZAR:
-                desactivarControles();
-                limpiarControles();
-                btnEditar.setText("Actualizar");
-                btnReportes.setText("Cancelar");
-                btnAgregar.setDisable(false);
-                btnEliminar.setDisable(false);
-                imgEditar.setImage(new Image("/org/carlosescobar/images/Actualizar.png"));
-                imgReportes.setImage(new Image("/org/carlosescobar/images/Cancelar.png"));
-                activarControles();
-                txtCodigoC.setEditable(false);
-                tipoDeOperaciones = operaciones.NINGUNO;
-        }
-    }
 
     public void desactivarControles() {
         txtCodigoC.setEditable(false);

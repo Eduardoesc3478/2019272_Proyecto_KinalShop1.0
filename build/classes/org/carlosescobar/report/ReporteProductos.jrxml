@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReporteProductos" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="08d1ea59-6529-4497-afda-1d958fb42d00">
+	<property name="ireport.zoom" value="1.0000000000000009"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[
+call sp_listarProducto]]>
+	</queryString>
+	<field name="codigoProducto" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="descripcionTipoProducto" class="java.lang.String"/>
+	<field name="descripcionProducto" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="precioUnitario" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="existencia" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="codigoProveedor" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="codigoTipoProducto" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band height="802" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="555" height="802" uuid="db3bcb95-64d2-4fdb-9473-674ba21f1cdb"/>
+				<imageExpression><![CDATA["C:\\Users\\Usuario\\Desktop\\Repositorio_2019272\\2019272_Proyecto_KinalShop1.0\\src\\org\\carlosescobar\\images\\FondoReportes.png"]]></imageExpression>
+			</image>
+		</band>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="29" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="66" y="1" width="100" height="20" uuid="afaf431c-c1ac-4e59-8a09-f7913d1bba1d"/>
+				<text><![CDATA[descripcionTipoProducto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="191" y="1" width="100" height="20" uuid="14e7343a-671c-4f5a-9f76-020c2bb8fc49"/>
+				<text><![CDATA[descripcionProducto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="326" y="1" width="100" height="20" uuid="1e142104-8314-4dc9-bbcd-8d2c7651da97"/>
+				<text><![CDATA[codigoProveedor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="455" y="0" width="100" height="20" uuid="4b8dd8a8-4423-44ba-b785-d33b3bd38b80"/>
+				<text><![CDATA[codigoTipoProducto]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="66" y="0" width="100" height="20" uuid="195ec432-89b6-421e-a6f7-0f6a1369a455"/>
+				<textFieldExpression><![CDATA[$F{descripcionTipoProducto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="191" y="0" width="100" height="20" uuid="74c3b931-1992-48d9-87ad-9e5d2255c6c1"/>
+				<textFieldExpression><![CDATA[$F{descripcionProducto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="326" y="0" width="100" height="20" uuid="4ae52668-45ee-432b-a562-a918e035cf45"/>
+				<textFieldExpression><![CDATA[$F{codigoProveedor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="455" y="0" width="100" height="20" uuid="de9e12df-33f4-4d70-b2c4-5941b16f2019"/>
+				<textFieldExpression><![CDATA[$F{codigoTipoProducto}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

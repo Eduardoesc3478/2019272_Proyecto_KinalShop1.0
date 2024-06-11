@@ -9,6 +9,8 @@ import java.net.URL;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -28,6 +30,7 @@ import org.carlosescobar.bean.Productos;
 import org.carlosescobar.bean.Proveedores;
 import org.carlosescobar.bean.TipoProducto;
 import org.carlosescobar.db.Conexion;
+import org.carlosescobar.report.GenerarReportes;
 import org.carlosescobar.system.Main;
 
 /**
@@ -240,12 +243,15 @@ public class ProductoController implements Initializable {
         }
     }
     
-    public void reportes() {
+        public void reportes() {
         switch (tipoDeOperacion) {
+            case NINGUNO:
+                imprimirReporte();
+                break;
             case ACTUALIZAR:
                 desactivarControles();
                 limpiarControles();
-                
+
                 btnAgregar.setDisable(false);
                 btnEditar.setDisable(false);
                 btnEliminar.setDisable(false);
@@ -255,6 +261,13 @@ public class ProductoController implements Initializable {
                 tipoDeOperacion = operaciones.NINGUNO;
                 break;
         }
+    }
+
+    
+    public void imprimirReporte(){
+        Map parametros = new HashMap();
+        parametros.put("codigoProducto",null);
+        GenerarReportes.mostrarReportes("ReporteProductos.jasper","Reporte de Productos", parametros);
     }
 
     public void eliminar() {

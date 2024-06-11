@@ -9,6 +9,8 @@ import java.net.URL;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -25,6 +27,7 @@ import javafx.scene.image.ImageView;
 import javax.swing.JOptionPane;
 import org.carlosescobar.bean.Proveedores;
 import org.carlosescobar.db.Conexion;
+import org.carlosescobar.report.GenerarReportes;
 import org.carlosescobar.system.Main;
 
 /**
@@ -321,20 +324,31 @@ public class ProveedoresController implements Initializable {
         }
     }
 
-    public void reporte() {
-
+        public void reportes() {
         switch (tipoDeOperaciones) {
+            case NINGUNO:
+                imprimirReporte();
+                break;
             case ACTUALIZAR:
                 desactivarControles();
                 limpiarControles();
+
                 btnAgregar.setDisable(false);
+                btnEditar.setDisable(false);
                 btnEliminar.setDisable(false);
-                imgEditar.setImage(new Image("/org/carlosescobar/images/Actualizar.png"));
-                imgReportes.setImage(new Image("/org/carlosescobar/images/Cancelar.png"));
-                activarControles();
-                txtCodigoP.setEditable(false);
+                imgAgregar.setImage(new Image("/org/carlosescobar/images/Agregar.png"));
+                imgEditar.setImage(new Image("/org/carlosescobar/images/editar2.png"));
+                imgReportes.setImage(new Image("/org/carlosescobar/images/Reporte.png"));
                 tipoDeOperaciones = operaciones.NINGUNO;
+                break;
         }
+    }
+
+    
+    public void imprimirReporte(){
+        Map parametros = new HashMap();
+        parametros.put("codigoProveedor",null);
+        GenerarReportes.mostrarReportes("ReporteProveedores.jasper","Reporte de Proveedores", parametros);
     }
 
     public void desactivarControles() {
@@ -356,7 +370,7 @@ public class ProveedoresController implements Initializable {
         txtContactoP.setEditable(true);
         txtRazonP.setEditable(true);
         txtPaginaP.setEditable(true);
-        txtDireccionP.setDisable(true);
+        txtDireccionP.setEditable(true);
     }
 
     public void limpiarControles() {

@@ -8,9 +8,9 @@ use DBKinalShop;
 
 create table Clientes (
 clienteID int,
-nitClientes varchar(10),
 nombreClientes varchar(50) ,
 apellidoClientes varchar(50),
+nitClientes varchar(10),
 direccionClientes varchar(150),
 telefonoClientes varchar(15),
 CorreoClientes varchar(45),
@@ -159,7 +159,7 @@ in _nitClientes varchar(10), in _direccionClientes varchar(150), in _telefonoCli
 begin
 	insert into Clientes (Clientes.clienteID,  Clientes.nombreClientes, Clientes.apellidoClientes, Clientes.nitClientes, 
     Clientes.direccionClientes, Clientes.telefonoClientes, Clientes.correoClientes)
-    values (_clienteID, _nombreClientes, _apellidoClientes, nitClientes, _direccionClientes, _telefonoClientes, _correoClientes);
+    values (_clienteID, _nombreClientes, _apellidoClientes, _nitClientes, _direccionClientes, _telefonoClientes, _correoClientes);
 end$$
 delimiter ;
  
@@ -169,7 +169,7 @@ delimiter $$
 	create procedure sp_listarClientes ()
     begin
 		select Clientes.clienteID,  Clientes.nombreClientes,
-		Clientes.apellidoClientes, Clientes.direccionClientes, Clientes.telefonoClientes, Clientes.correoClientes  from Clientes;
+		Clientes.apellidoClientes,Clientes.nitClientes, Clientes.direccionClientes, Clientes.telefonoClientes, Clientes.correoClientes  from Clientes;
     end$$
 delimiter ;
  
