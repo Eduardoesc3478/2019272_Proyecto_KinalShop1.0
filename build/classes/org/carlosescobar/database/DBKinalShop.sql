@@ -1015,5 +1015,10 @@ delimiter $$
     end$$
 delimiter ;
 
+select * from detallefactura
+	join factura on detallefactura.numeroFactura = factura.numeroFactura
+    join clientes on factura.clienteID = clientes.clienteID
+    join productos on detallefactura.codigoProducto = productos.codigoProducto
+    where factura.numeroFactura = 2;
 
 ALTER USER 'Proyectos_IN5BM'@'localhost' IDENTIFIED WITH mysql_native_password BY 'abc123**';

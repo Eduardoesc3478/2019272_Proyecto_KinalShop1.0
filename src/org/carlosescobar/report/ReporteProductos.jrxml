@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReporteProductos" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="08d1ea59-6529-4497-afda-1d958fb42d00">
-	<property name="ireport.zoom" value="0.5644739300537778"/>
+	<property name="ireport.zoom" value="0.8264462809917368"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="525"/>
 	<queryString>
 		<![CDATA[call sp_listarProducto]]>
 	</queryString>
@@ -28,8 +28,12 @@
 	<background>
 		<band height="802" splitType="Stretch">
 			<image>
-				<reportElement x="0" y="0" width="555" height="802" uuid="91d9cc51-3aba-41ec-9167-87cf9e9c0a3d"/>
-				<imageExpression><![CDATA["C:\\Users\\Informatica\\Desktop\\Repositorio 2019272\\2019272_Proyecto_KinalShop1.0\\src\\org\\carlosescobar\\images\\FondoReportes.png"]]></imageExpression>
+				<reportElement x="0" y="0" width="555" height="802" uuid="fc407128-97e5-4aa3-80b6-3c5e9f46198b"/>
+				<imageExpression><![CDATA["C:\\Users\\Usuario\\Desktop\\Repositorio_2019272\\2019272_Proyecto_KinalShop1.0\\src\\org\\carlosescobar\\images\\FondoReporte2.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="317" y="594" width="189" height="127" uuid="3136af85-89a4-4cb7-9a2f-2b6a17d7bec6"/>
+				<imageExpression><![CDATA["C:\\Users\\Usuario\\Desktop\\Repositorio_2019272\\2019272_Proyecto_KinalShop1.0\\src\\org\\carlosescobar\\images\\Firma.png"]]></imageExpression>
 			</image>
 		</band>
 	</background>
@@ -50,12 +54,12 @@
 				<text><![CDATA[descripcionProducto]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="326" y="1" width="100" height="20" uuid="1e142104-8314-4dc9-bbcd-8d2c7651da97"/>
-				<text><![CDATA[codigoProveedor]]></text>
+				<reportElement x="317" y="1" width="100" height="20" uuid="b01d2c34-adcd-4c40-87c4-938dbf1b2282"/>
+				<text><![CDATA[precioUnitario]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="455" y="0" width="100" height="20" uuid="4b8dd8a8-4423-44ba-b785-d33b3bd38b80"/>
-				<text><![CDATA[codigoTipoProducto]]></text>
+				<reportElement x="449" y="1" width="100" height="20" uuid="fd94da36-6b68-4053-991b-d26a2abfa9c7"/>
+				<text><![CDATA[existencia]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
@@ -70,12 +74,12 @@
 				<textFieldExpression><![CDATA[$F{descripcionProducto}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="326" y="0" width="100" height="20" uuid="4ae52668-45ee-432b-a562-a918e035cf45"/>
-				<textFieldExpression><![CDATA[$F{codigoProveedor}]]></textFieldExpression>
+				<reportElement x="317" y="0" width="100" height="20" uuid="7ff4ef43-4d68-4922-a4f4-44659704e7d3"/>
+				<textFieldExpression><![CDATA[$F{precioUnitario}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="455" y="0" width="100" height="20" uuid="de9e12df-33f4-4d70-b2c4-5941b16f2019"/>
-				<textFieldExpression><![CDATA[$F{codigoTipoProducto}]]></textFieldExpression>
+				<reportElement x="449" y="0" width="100" height="20" uuid="21ac90af-fab4-40df-873d-0de8ab7db362"/>
+				<textFieldExpression><![CDATA[$F{existencia}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

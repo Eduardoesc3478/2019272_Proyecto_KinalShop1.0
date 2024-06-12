@@ -363,7 +363,7 @@ public ObservableList<Clientes> getClientes() {
     public void imprimirReporte(){
         Map parametros = new HashMap();
         int numFac = Integer.valueOf(((Factura)tblFactura.getSelectionModel().getSelectedItem()).getNumeroFactura());
-        parametros.put(numFac,numFac);
+        parametros.put("numFac" ,numFac);
         GenerarReportes.mostrarReportes("ReporteFactura.jasper","Reporte de clientes", parametros);
     }
     public void desactivarControles() {
